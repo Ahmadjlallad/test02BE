@@ -2,7 +2,8 @@ const { default: axios } = require("axios");
 const Model = require("./Model");
 
 class Reshaper {
-  constructor(imageUrl, description, numHearts, price, numViews) {
+  constructor(title, imageUrl, description, numHearts, price, numViews) {
+    this.title = title;
     this.imageUrl = imageUrl;
     this.description = description;
     this.numHearts = numHearts;
@@ -17,8 +18,9 @@ const getAllChocolateData = async (req, res) => {
         `https://ltuc-asac-api.herokuapp.com/allChocolateData`
       );
       const reshapedData = data.map(
-        ({ imageUrl, description, numHearts, price, numViews }) => {
+        ({ title, imageUrl, description, numHearts, price, numViews }) => {
           return new Reshaper(
+            title,
             imageUrl,
             description,
             numHearts,
